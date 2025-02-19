@@ -1,0 +1,371 @@
+---
+title: "How2MANIM"
+format: html
+editor: visual
+execute: 
+  eval: false
+---
+
+# MANIMで美しいアニメーションスライドを作成する
+
+## MANIMとは？
+
+[MANIMのクイックスタートページ](https://docs.manim.community/en/stable/tutorials/quickstart.html)
+
+開発環境 
+
+- MacOS 
+
+- VScode
+
+## インストール
+
+1.  You need to install `manim` and dependencies.
+
+ターミナルで以下のコードを実行
+
+``` bash
+$ pip install manim
+$ brew install ffmpeg
+```
+
+         
+MacOSの場合、MacTexをインストール。
+
+
+-   [インストール方法の解説ページ](https://medemanabu.net/latex/mactex-download-install/)
+
+-   [MacTexのページ](https://tug.org/mactex/)
+
+2.  You follow this page.
+
+-   [MANIMのインストール](https://manim-slides.eertmans.be/latest/installation.html)
+
+         
+MANIMとMANIM-slidesのインストール
+
+
+``` bash
+$ pip install manimgl
+$ pip install manim
+```
+
+         
+ドキュメントでは`pipx`が推奨されていたが、`pip`を使用した。
+
+
+``` bash
+$ pip install "manim-slides[pyside6]" ##-U option, documentation referring, may be work wrong.
+$ manim-slides --version ##Can you install well?
+```
+
+## チュートリアル
+
+### プロジェクトの作成
+適当なフォルダで以下を実行。\[Default\]では何も押さずEnter
+
+``` bash
+$ manim init project my-project --default
+
+Manim Community v0.18.0.post0
+
+Template (MovingCamera, Default, Axes) [Default]: 
+
+        copied manim.cfg
+
+
+        copied main.py
+```
+
+`my-project`直下に、以下の２ファイルが作成されているはず
+
+-   manim.cfg
+-   main.py
+
+### main.pyの実行
+
+ターミナルで以下を叩く
+
+```bash
+$ cd my-project
+$ manim -pql main.py CreateCircle
+```
+
+MP4ファイルができるはず。チュートリアル終わり。
+
+この`main.py`を自分で書けるようになりたい
+
+# Manimをやってみよう
+
+## Manimのスクリプト作成
+
+Manimは３つのclassを駆使してアニメーションを作る。
+
+1. `mathematical object (Mobject)`
+
+`Circle`、`Rectangle`, `Arrow`など
+
+2. `animation`
+
+`scene`に`play()`を加えることでアニメーションにできる
+
+
+3. `scene`
+
+Mobjectやanimationはこの中に入る。
+
+### 具体例
+
+`Circle`をただ表示するだけの簡単なScene
+
+```python
+from manim import *
+
+class CreatingMobjects(Scene):
+    def construct(self):
+        circle = Circle()
+        self.add(circle)
+        self.wait(1)
+        self.remove(circle)
+        self.wait(1)
+```
+
+`class`でscene名を決定し（ここではCreatingMobjects）、`construct()`でSceneにコンテンツを追加している。コンテンツは以下のCircle Mobjectやadd、wait、removeなどのアニメーション
+
+
+いくつかのMobjectを配置してみる。ここでは`shift()`sceneを活用して、Mobjectの配置位置を変更している
+
+
+```python
+from manim import *
+
+class Shapes(Scene):
+    def construct(self):
+        circle = Circle()
+        square = Square()
+        triangle = Triangle()
+
+        circle.shift(LEFT)
+        square.shift(UP)
+        triangle.shift(RIGHT)
+
+        self.add(circle, square, triangle)
+        self.wait(1)
+```
+
+## Manimの実行とアウトプット
+
+manimの実行には、作成したpythonスクリプトが必要。
+
+```bash
+manim -pql hogehoge.py scene
+```
+
+`hogehoge.py`：作成したmanimのpythonファイル
+
+例えば、以下のscene.py
+
+```python
+from manim import *
+
+####Animating a circle
+
+class CreateCircle(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        circle.set_fill(PINK, opacity=0.5)  # set the color and transparency
+        self.play(Create(circle))  # show the circle on screen
+        
+####Transforming a square into a circle
+class SquareToCircle(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        circle.set_fill(PINK, opacity=0.5)  # set color and transparency
+
+        square = Square()  # create a square
+        square.rotate(PI / 4)  # rotate a certain amount
+
+        self.play(Create(square))  # animate the creation of the square
+        self.play(Transform(square, circle))  # interpolate the square into the circle
+        self.play(FadeOut(square))  # fade out animation
+        
+####Positioning Mobjects
+##You can make movie with below code.
+##manim -pql scene.py SquareAndCircle
+
+class SquareAndCircle(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        circle.set_fill(PINK, opacity=0.5)  # set the color and transparency
+
+        square = Square()  # create a square
+        square.set_fill(BLUE, opacity=0.5)  # set the color and transparency
+
+        square.next_to(circle, UP, buff=0.5)    # set the position. 
+                                                # `buff` codes the distances between two objects
+                                                # You can use `UP`, `DOWN`, `LEFT` instead of `RIGHT`
+        self.play(Create(circle), Create(square))   # show the shapes on screen
+        
+####Using .animate syntax to animate methods
+class AnimatedSquareToCircle(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        square = Square()  # create a square
+
+        self.play(Create(square))  # show the square on screen
+        self.play(square.animate.rotate(PI / 4))  # rotate the square
+        self.play(
+            ReplacementTransform(square, circle)
+        )  # transform the square into a circle
+        self.play(
+            circle.animate.set_fill(PINK, opacity=0.5)
+        )  # color the circle on screen      
+##SquareToCircleと結果は同じだが、より動的に可視化できた。
+
+class DifferentRotations(Scene):
+    def construct(self):
+        left_square = Square(color=BLUE, fill_opacity=0.7).shift(2 * LEFT)
+        right_square = Square(color=GREEN, fill_opacity=0.7).shift(2 * RIGHT)
+        self.play(
+            left_square.animate.rotate(PI), Rotate(right_square, angle=PI), run_time=2
+        )
+        self.wait()
+##.animateはMobjectの最初と最後の状態を補完するようにアニメーション作成する。このため、.animateが望ましくない動きをするならRotateなどを使用しよう
+```
+
+`CreateCircle`や`SquareToCircle`など、複数のsceneを入れることができる
+
+`scene`：`hogehoge.py`には複数のsceneが入っているので、どれか一つを指定
+
+
+さて、renderが完了すると、`media/`が完成し、その中に`media/videos/scene/480p15/`というディレクトリがある。この中に作成した.mp4が保存される。
+
+[オプション](https://docs.manim.community/en/stable/tutorials/output_and_config.html#some-command-line-flags)
+
+-   -p：renderが終わると動画を再生してくれる
+
+-   -ql：low quality。早くrenderが完了（480 resolutionで15 fps）
+
+-   -qh：high quality。renderに時間がかかる（1080 resolutionで60 fps）
+
+-   -s：最速のrender。プレビュー用
+
+-   -a：pythonファイル内のすべてのsceneをrender
+
+
+# コマンドいろいろ
+
+```python
+from manim import *
+```
+
+manimをインポートする
+
+
+
+```python
+class DefaultTemplate(Scene)
+  def construct(self)
+```
+
+
+アニメーションのコードを打つときは、このconstruct()以下に。objectsを作り、screenに移し、アニメーションすることができる
+
+
+```python
+from manim import *
+class DefaultTemplate(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        circle.set_fill(PINK, opacity=0.5)  # set color and transparency
+
+        square = Square()  # create a square
+        square.flip(RIGHT)  # flip horizontally
+        square.rotate(-3 * TAU / 8)  # rotate a certain amount
+
+        self.play(Create(square))  # animate the creation of the square
+        self.play(Transform(square, circle))  # interpolate the square into the circle
+        self.play(FadeOut(square))  # fade out animation
+```
+
+
+def以下でcircleオブジェクトとsquareオブジェクトを定義。
+
+定義したオブジェクトを利用してself.playでアニメーションを追加。
+
+
+## Animation
+`self.play(動作(object))`
+
+動作にいろんなコマンドを入力することで、オブジェクトを自由にアニメーションできる
+
+ここでは動作をいろいろピックアップ
+
+### Mobjectの配置
+`self.play(Create(Mobject))`
+
+オブジェクト１をオブジェクト２の右隣0.5buffで配置するときは
+
+```python
+object1.next_to(object2, RIGHT, buff=0.5)
+self.play(Create(object1), Create(object2))
+```
+
+第二引数：`RIGHT`, `LEFT`, `UP`, `DOWN`
+
+### Mobjectの変換
+`self.play(Transform(Mobject))`
+
+### Mobjectの回転
+`self.play(Rotate(Mobject))`
+
+### Mobjectの定義をアニメーションにして動かす
+`.animate`
+
+
+例えば、以下のアニメーションがある
+
+```python
+class SquareToCircle(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        circle.set_fill(PINK, opacity=0.5)  # set color and transparency
+
+        square = Square()  # create a square
+        square.rotate(PI / 4)  # rotate a certain amount
+
+        self.play(Create(square))  # animate the creation of the square
+        self.play(Transform(square, circle))  # interpolate the square into the circle
+        self.play(FadeOut(square))  # fade out animation
+```
+
+ここでは、一回のアニメーションで「斜め四角がピンク塗りの円に変化する」。
+
+では、`square.rotate`や`circle.set_fill`もアニメーションにしたい。
+
+
+```python
+class AnimatedSquareToCircle(Scene):
+    def construct(self):
+        circle = Circle()  # create a circle
+        square = Square()  # create a square
+
+        self.play(Create(square))  # show the square on screen
+        self.play(square.animate.rotate(PI / 4))  # rotate the square
+        self.play(Transform(square, circle))  # transform the square into a circle
+        self.play(
+            square.animate.set_fill(PINK, opacity=0.5)
+        )  # color the circle on screen
+```
+
+
+`self.play(Mobject.animate.動作())`でそれができる
+
+オプション
+
+-   `run_time`：何秒でアニメーションを完了するか指定できる
+
+自分で[アニメーションの関数](https://docs.manim.community/en/stable/tutorials/building_blocks.html#creating-a-custom-animation)を作成することもできる
+
+
+* `.animate`は開始位置と終了位置を補完するようにアニメーションを生成する。このため、`Mobject.animate.rotate(PI)`と`Rotate(Mobject, angle = PI)`で異なる挙動を示すこともある。詳しくは[DifferentRotations](https://docs.manim.community/en/stable/tutorials/quickstart.html)を参考

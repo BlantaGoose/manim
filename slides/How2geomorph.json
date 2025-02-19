@@ -1,0 +1,49 @@
+{
+  "slides": [
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "file": "slides/files/How2geomorph/bf4161c3cdf41af3bd8d74a53b4d42965a1135998171f2e68f89e2dcbd36b3de.mp4",
+      "rev_file": "slides/files/How2geomorph/bf4161c3cdf41af3bd8d74a53b4d42965a1135998171f2e68f89e2dcbd36b3de_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "file": "slides/files/How2geomorph/98d2e8c376a3eb57f47eb4bceab3513d70873a0936d01d871fbf17a1838e6a5c.mp4",
+      "rev_file": "slides/files/How2geomorph/98d2e8c376a3eb57f47eb4bceab3513d70873a0936d01d871fbf17a1838e6a5c_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "file": "slides/files/How2geomorph/72de1a1f7bd1609eaf0f28fbd436a73e71310d43c36a75a5a6d568685eaa3196.mp4",
+      "rev_file": "slides/files/How2geomorph/72de1a1f7bd1609eaf0f28fbd436a73e71310d43c36a75a5a6d568685eaa3196_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "",
+      "dedent_notes": true,
+      "file": "slides/files/How2geomorph/d86edab6f46343cf51d3c80e311063114d275e76859f57882a0e4a9ed9b78faa.mp4",
+      "rev_file": "slides/files/How2geomorph/d86edab6f46343cf51d3c80e311063114d275e76859f57882a0e4a9ed9b78faa_reversed.mp4"
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}

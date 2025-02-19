@@ -1,0 +1,10 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/3977891868_1740077458_223132457.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_3277911739_3461052749.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_3111904256_3188310646.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_437862567_2258442787.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_780061398_34725049.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_319684948_3401881473.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_3339726158_2010234368.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_431093217_3410677627.mp4'
+file 'file:/Users/araisota/manim/media/videos/canvas/1080p60/partial_movie_files/CanvasExample/2852726489_3855624677_2358810818.mp4'

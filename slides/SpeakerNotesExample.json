@@ -1,0 +1,39 @@
+{
+  "slides": [
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "Some introduction",
+      "dedent_notes": true,
+      "file": "slides/files/SpeakerNotesExample/77500209ba380db423f52a35ee340f98b70e79a1212e800f855409132177661d.mp4",
+      "rev_file": "slides/files/SpeakerNotesExample/77500209ba380db423f52a35ee340f98b70e79a1212e800f855409132177661d_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "We now rotate the slide",
+      "dedent_notes": true,
+      "file": "slides/files/SpeakerNotesExample/dfeac4e416911687a6b236cf7790de69472a3e969b60e7313d14eadef434bcc9.mp4",
+      "rev_file": "slides/files/SpeakerNotesExample/dfeac4e416911687a6b236cf7790de69472a3e969b60e7313d14eadef434bcc9_reversed.mp4"
+    },
+    {
+      "loop": false,
+      "auto_next": false,
+      "playback_rate": 1.0,
+      "reversed_playback_rate": 1.0,
+      "notes": "Bye bye",
+      "dedent_notes": true,
+      "file": "slides/files/SpeakerNotesExample/9626e35f72f3534d8d85b7a4377ff61091f64ed0a1791b2ff03a77055d26519a.mp4",
+      "rev_file": "slides/files/SpeakerNotesExample/9626e35f72f3534d8d85b7a4377ff61091f64ed0a1791b2ff03a77055d26519a_reversed.mp4"
+    }
+  ],
+  "resolution": [
+    1920,
+    1080
+  ],
+  "background_color": "black"
+}

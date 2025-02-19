@@ -1,0 +1,57 @@
+---
+title: "manim-Chemistry"
+format: html
+editor: visual
+---
+
+# manim-Chemistry
+
+manimで化学のアニメーション作り。manimのPlugIn。
+
+できること
+
+-   `.mol`ファイルの読み取りと表示
+
+-   [Elements.csv](https://gist.github.com/GoodmanSciences/c2dd862cd38f21b0ad36b8f96b4bf1ee)の読み取り
+
+-   原子モデルの作成
+
+<!-- -->
+
+-   [公式ドキュメント](https://github.com/UnMolDeQuimica/manim-Chemistry)
+
+## インストール
+
+``` bash
+$ pip install manim_chemistry
+```
+
+## チュートリアル
+
+``` bash
+$ manim init project chem-project
+$ cd chem-project
+```
+
+試しに[原子モデル](https://github.com/UnMolDeQuimica/manim-Chemistry?tab=readme-ov-file#making-atomic-orbitals)を作らせてみる
+
+``` python
+from manim import *
+from manim_chemistry import *
+
+class DrawPOrbital(Scene):
+    def construct(self):
+        orbital = Orbital(l=1, m=-1)
+        self.add(orbital)
+
+class DrawBohrDiagram(Scene):
+    def construct(self):
+        diagram = BohrAtom(e=14, p=14, n=10)
+        self.add(diagram)
+```
+
+``` bash
+$ manim examples.py DrawPOrbital -ps --renderer=opengl
+```
+
+試しに[ボーアモデル](manim .\examples.py DrawPOrbital -ps --renderer=opengl)を作らせてみる
