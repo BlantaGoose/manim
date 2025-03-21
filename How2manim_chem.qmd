@@ -54,4 +54,4 @@ class DrawBohrDiagram(Scene):
 $ manim examples.py DrawPOrbital -ps --renderer=opengl
 ```
 
-試しに[ボーアモデル](manim .\examples.py DrawPOrbital -ps --renderer=opengl)を作らせてみる
+試しに[ボーアモデル](manim%20.\examples.py%20DrawPOrbital%20-ps%20--renderer=opengl)を作らせてみる

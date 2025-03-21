@@ -12,11 +12,11 @@ execute:
 
 [MANIMのクイックスタートページ](https://docs.manim.community/en/stable/tutorials/quickstart.html)
 
-開発環境 
+開発環境
 
-- MacOS 
+-   MacOS
 
-- VScode
+-   VScode
 
 ## インストール
 
@@ -29,9 +29,7 @@ $ pip install manim
 $ brew install ffmpeg
 ```
 
-         
 MacOSの場合、MacTexをインストール。
-
 
 -   [インストール方法の解説ページ](https://medemanabu.net/latex/mactex-download-install/)
 
@@ -41,18 +39,14 @@ MacOSの場合、MacTexをインストール。
 
 -   [MANIMのインストール](https://manim-slides.eertmans.be/latest/installation.html)
 
-         
 MANIMとMANIM-slidesのインストール
-
 
 ``` bash
 $ pip install manimgl
 $ pip install manim
 ```
 
-         
 ドキュメントでは`pipx`が推奨されていたが、`pip`を使用した。
-
 
 ``` bash
 $ pip install "manim-slides[pyside6]" ##-U option, documentation referring, may be work wrong.
@@ -62,6 +56,7 @@ $ manim-slides --version ##Can you install well?
 ## チュートリアル
 
 ### プロジェクトの作成
+
 適当なフォルダで以下を実行。\[Default\]では何も押さずEnter
 
 ``` bash
@@ -86,7 +81,7 @@ Template (MovingCamera, Default, Axes) [Default]:
 
 ターミナルで以下を叩く
 
-```bash
+``` bash
 $ cd my-project
 $ manim -pql main.py CreateCircle
 ```
@@ -101,16 +96,15 @@ MP4ファイルができるはず。チュートリアル終わり。
 
 Manimは３つのclassを駆使してアニメーションを作る。
 
-1. `mathematical object (Mobject)`
+1.  `mathematical object (Mobject)`
 
 `Circle`、`Rectangle`, `Arrow`など
 
-2. `animation`
+2.  `animation`
 
 `scene`に`play()`を加えることでアニメーションにできる
 
-
-3. `scene`
+3.  `scene`
 
 Mobjectやanimationはこの中に入る。
 
@@ -118,7 +112,7 @@ Mobjectやanimationはこの中に入る。
 
 `Circle`をただ表示するだけの簡単なScene
 
-```python
+``` python
 from manim import *
 
 class CreatingMobjects(Scene):
@@ -132,11 +126,9 @@ class CreatingMobjects(Scene):
 
 `class`でscene名を決定し（ここではCreatingMobjects）、`construct()`でSceneにコンテンツを追加している。コンテンツは以下のCircle Mobjectやadd、wait、removeなどのアニメーション
 
-
 いくつかのMobjectを配置してみる。ここでは`shift()`sceneを活用して、Mobjectの配置位置を変更している
 
-
-```python
+``` python
 from manim import *
 
 class Shapes(Scene):
@@ -157,7 +149,7 @@ class Shapes(Scene):
 
 manimの実行には、作成したpythonスクリプトが必要。
 
-```bash
+``` bash
 manim -pql hogehoge.py scene
 ```
 
@@ -165,7 +157,7 @@ manim -pql hogehoge.py scene
 
 例えば、以下のscene.py
 
-```python
+``` python
 from manim import *
 
 ####Animating a circle
@@ -237,7 +229,6 @@ class DifferentRotations(Scene):
 
 `scene`：`hogehoge.py`には複数のsceneが入っているので、どれか一つを指定
 
-
 さて、renderが完了すると、`media/`が完成し、その中に`media/videos/scene/480p15/`というディレクトリがある。この中に作成した.mp4が保存される。
 
 [オプション](https://docs.manim.community/en/stable/tutorials/output_and_config.html#some-command-line-flags)
@@ -252,27 +243,22 @@ class DifferentRotations(Scene):
 
 -   -a：pythonファイル内のすべてのsceneをrender
 
-
 # コマンドいろいろ
 
-```python
+``` python
 from manim import *
 ```
 
 manimをインポートする
 
-
-
-```python
+``` python
 class DefaultTemplate(Scene)
   def construct(self)
 ```
 
-
 アニメーションのコードを打つときは、このconstruct()以下に。objectsを作り、screenに移し、アニメーションすることができる
 
-
-```python
+``` python
 from manim import *
 class DefaultTemplate(Scene):
     def construct(self):
@@ -288,13 +274,12 @@ class DefaultTemplate(Scene):
         self.play(FadeOut(square))  # fade out animation
 ```
 
-
 def以下でcircleオブジェクトとsquareオブジェクトを定義。
 
 定義したオブジェクトを利用してself.playでアニメーションを追加。
 
-
 ## Animation
+
 `self.play(動作(object))`
 
 動作にいろんなコマンドを入力することで、オブジェクトを自由にアニメーションできる
@@ -302,11 +287,12 @@ def以下でcircleオブジェクトとsquareオブジェクトを定義。
 ここでは動作をいろいろピックアップ
 
 ### Mobjectの配置
+
 `self.play(Create(Mobject))`
 
 オブジェクト１をオブジェクト２の右隣0.5buffで配置するときは
 
-```python
+``` python
 object1.next_to(object2, RIGHT, buff=0.5)
 self.play(Create(object1), Create(object2))
 ```
@@ -314,18 +300,20 @@ self.play(Create(object1), Create(object2))
 第二引数：`RIGHT`, `LEFT`, `UP`, `DOWN`
 
 ### Mobjectの変換
+
 `self.play(Transform(Mobject))`
 
 ### Mobjectの回転
+
 `self.play(Rotate(Mobject))`
 
 ### Mobjectの定義をアニメーションにして動かす
-`.animate`
 
+`.animate`
 
 例えば、以下のアニメーションがある
 
-```python
+``` python
 class SquareToCircle(Scene):
     def construct(self):
         circle = Circle()  # create a circle
@@ -343,8 +331,7 @@ class SquareToCircle(Scene):
 
 では、`square.rotate`や`circle.set_fill`もアニメーションにしたい。
 
-
-```python
+``` python
 class AnimatedSquareToCircle(Scene):
     def construct(self):
         circle = Circle()  # create a circle
@@ -358,7 +345,6 @@ class AnimatedSquareToCircle(Scene):
         )  # color the circle on screen
 ```
 
-
 `self.play(Mobject.animate.動作())`でそれができる
 
 オプション
@@ -367,5 +353,4 @@ class AnimatedSquareToCircle(Scene):
 
 自分で[アニメーションの関数](https://docs.manim.community/en/stable/tutorials/building_blocks.html#creating-a-custom-animation)を作成することもできる
 
-
-* `.animate`は開始位置と終了位置を補完するようにアニメーションを生成する。このため、`Mobject.animate.rotate(PI)`と`Rotate(Mobject, angle = PI)`で異なる挙動を示すこともある。詳しくは[DifferentRotations](https://docs.manim.community/en/stable/tutorials/quickstart.html)を参考
+-   `.animate`は開始位置と終了位置を補完するようにアニメーションを生成する。このため、`Mobject.animate.rotate(PI)`と`Rotate(Mobject, angle = PI)`で異なる挙動を示すこともある。詳しくは[DifferentRotations](https://docs.manim.community/en/stable/tutorials/quickstart.html)を参考
